@@ -25,11 +25,11 @@ def get_transcript():
             transcript_text += line['text'] + ' '
         
         words = transcript_text.split()
-        first_500_words = words[:50]
-        transcript_text = ' '.join(first_500_words)
+        first_50_words = words[:50]
+        transcript_text = ' '.join(first_50_words)
         # Prepare prompt for Ollama
         prompt = '''
-        Make multiple choice quizzes with 4 choices. Examples as below. [Important] DO NOT SAY ANYTHING ELSE! FOLLOW THE FORMAT BELOW. DO NOT PUT A, B, C, D in CHOICES!
+        Make multiple choice quizzes with 4 choices. Examples as below. [Important] DO NOT SAY ANYTHING ELSE! Do not put the examples into your answer. FOLLOW THE FORMAT BELOW. DO NOT PUT A, B, C, D in CHOICES!
         PUT THE QUESTION BETWEEN //start and //end. 
         //start
 
@@ -75,6 +75,7 @@ def get_transcript():
 
         # Convert list to JSON format
         json_data = json.dumps(questions_list, indent=2)
+        print(questions_list)
         return json_data
 
     except TranscriptsDisabled:
