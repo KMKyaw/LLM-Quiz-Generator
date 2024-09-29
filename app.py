@@ -3,8 +3,11 @@ from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
 from langchain_community.llms import Ollama
 import re
 import json
+import os
 app = Flask(__name__)
-llm = Ollama(model="llama2")
+llm = Ollama(model='llama2')
+prompt_file_name = 'another_try.txt'
+prompt_file_path = os.path.join('prompts',prompt_file_name)
 @app.route('/transcript', methods=['GET'])
 def get_transcript():
     video_id = request.args.get('video_id')  # get video_id from query parameters
@@ -27,32 +30,16 @@ def get_transcript():
         words = transcript_text.split()
         first_50_words = words[:50]
         transcript_text = ' '.join(first_50_words)
+
         # Prepare prompt for Ollama
-        prompt = '''
-        Make multiple choice quizzes with 4 choices. Examples as below. [Important] DO NOT SAY ANYTHING ELSE! Do not put the examples into your answer. FOLLOW THE FORMAT BELOW. DO NOT PUT A, B, C, D in CHOICES!
-        PUT THE QUESTION BETWEEN //start and //end. 
-        //start
-
-        QUESTION(Which company has partnered with Amazon to develop new smart home devices?)
-        CHOICES(Apple, Google, Microsoft, Samsung)
-        ANSWER(Apple)
-
-        QUESTION(Which company has good burgers?)
-        CHOICES(BurgerKing, Macdonald, KFC, JolieBee)
-        ANSWER(BurgerKing)
-        
-        QUESTION(Which country has the nothern lights)
-        CHOICES(Netherland, Thailand, North Korea, Burma)
-        ANSWER(Netherland)
-        
-        //end
-        Now, try to generate the quiz on the given transcript below. 
-        '''
+        with open(prompt_file_path,'r') as file:
+            prompt = file.read()
         prompt += transcript_text
         print(prompt)
+
         # Call Ollama to generate quizzes
         response = llm.invoke(prompt)
-
+        print(response)
         # Regular expression patterns to extract questions, choices, and answers
         pattern_question = r"QUESTION\((.*?)\)"
         pattern_choices = r"CHOICES\((.*?)\)"

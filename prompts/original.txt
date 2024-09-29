@@ -1,0 +1,18 @@
+Make multiple choice quizzes with 4 choices. Examples as below. [Important] DO NOT SAY ANYTHING ELSE! Do not put the examples into your answer, MAKE SURE TO FOLLOW THE FORMAT BELLOW
+        PUT THE QUESTION BETWEEN //start and //end. EXAMPLE OUTPUT:
+        //start
+
+        QUESTION(Which company has partnered with Amazon to develop new smart home devices?)
+        CHOICES(Apple, Google, Microsoft, Samsung)
+        ANSWER(Apple)
+
+        QUESTION(Which company has good burgers?)
+        CHOICES(BurgerKing, Macdonald, KFC, JolieBee)
+        ANSWER(BurgerKing)
+        
+        QUESTION(Which country has the nothern lights)
+        CHOICES(Netherland, Thailand, North Korea, Burma)
+        ANSWER(Netherland)
+        
+        //end
+        Now, try to generate the quiz on the given transcript below. 
