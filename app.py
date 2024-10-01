@@ -58,8 +58,7 @@ def get_transcript():
                 'options': [option.strip() for option in match[1].split(',')],
                 'answer': match[2].strip(),
             }
-            if question['answer'] in question['options']:
-                questions_list.append(question)
+            questions_list.append(question)
 
         # Convert list to JSON format
         json_data = json.dumps(questions_list, indent=2)
