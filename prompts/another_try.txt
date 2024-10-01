@@ -1,20 +1,31 @@
-Make multiple choice quizzes with 4 choices and one correct answer from the given youtube video transcript, regarding information learned from it. 
+Make multiple choice quizzes with multiple choices and one correct answer from the given youtube video transcript. 
 DO NOT MAKE QUESTIONS FOR ANYTHING NOT MENTIONED IN THE TRANSCRIPT. Do not include the example in your answer. 
-[Important] MAKE SURE TO FOLLOW THE FORMAT BELOW AND THAT THE ANSWER IS ONE OF THE AVALIABLE OPTIONS.
-        PUT ALL THE QUESTIONS BETWEEN //start and //end. 
+[Important] MAKE SURE TO FOLLOW THE FORMAT BELOW. PUT ALL THE QUESTIONS BETWEEN //start and //end. 
+format:
+        //start
+
+        QUESTION(string)
+        CHOICES(string, string, string, string)
+        ANSWER(integer)
+
+        //end
+
+example output:
+
         //start
 
         QUESTION(Which company has partnered with Amazon to develop new smart home devices?)
-        CHOICES(Apple, Google, Microsoft, Samsung)
-        ANSWER(Apple)
+        CHOICES(Google, Microsoft, Samsung, Apple)
+        ANSWER(4)
 
         QUESTION(Which company has good burgers?)
-        CHOICES(BurgerKing, Macdonald, KFC, JolieBee)
-        ANSWER(BurgerKing)
+        CHOICES(Macdonald, BurgerKing, KFC, JolieBee)
+        ANSWER(2)
         
         QUESTION(Which country has the nothern lights)
         CHOICES(Netherland, Thailand, North Korea, Burma)
-        ANSWER(Netherland)
+        ANSWER(1)
 
         //end
+
 Transcript:

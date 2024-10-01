@@ -28,8 +28,8 @@ def get_transcript():
             transcript_text += line['text'] + ' '
         
         words = transcript_text.split()
-        first_50_words = words[:50]
-        transcript_text = ' '.join(first_50_words)
+        first_250_words = words[:250]
+        transcript_text = ' '.join(first_250_words)
 
         # Prepare prompt for Ollama
         with open(prompt_file_path,'r') as file:
@@ -58,7 +58,8 @@ def get_transcript():
                 'options': [option.strip() for option in match[1].split(',')],
                 'answer': match[2].strip(),
             }
-            questions_list.append(question)
+            if question['answer'] in question['options']:
+                questions_list.append(question)
 
         # Convert list to JSON format
         json_data = json.dumps(questions_list, indent=2)
