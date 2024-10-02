@@ -34,7 +34,7 @@ def get_transcript():
         # Prepare prompt for Ollama
         with open(prompt_file_path,'r') as file:
             prompt = file.read()
-        prompt += '\n' + transcript_text
+        prompt += '\n{' + transcript_text + '}'
         print(prompt)
 
         # Call Ollama to generate quizzes

@@ -32,4 +32,4 @@ ANSWER(3)
 }
 
 Transcript:
-{
+
