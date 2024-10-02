@@ -1,31 +1,35 @@
-Make multiple choice quizzes with multiple choices and one correct answer from the given youtube video transcript. 
-DO NOT MAKE QUESTIONS FOR ANYTHING NOT MENTIONED IN THE TRANSCRIPT. Do not include the example in your answer. 
-[Important] MAKE SURE TO FOLLOW THE FORMAT BELOW. PUT ALL THE QUESTIONS BETWEEN //start and //end. 
+Select important information from the given youtube video transcript and make multiple choice quizzes with one correct answer. 
+Do not make questions anything not mentioned in the transcript. Do not include the example in your answer. 
+[Important] THE OUTPUT MUST BE IN THE EXACT FORMAT BELOW. PUT ALL THE QUESTIONS BETWEEN //start and //end. 
 format:
-        //start
+{
+//start
 
-        QUESTION(string)
-        CHOICES(string, string, string, string)
-        ANSWER(integer)
+QUESTION(string)
+CHOICES(string, string, string, string)
+ANSWER(number)
 
-        //end
+//end
+}
 
 example output:
+{
+//start
 
-        //start
+QUESTION(Which company has partnered with Amazon to develop new smart home devices?)
+CHOICES(Google, Microsoft, Samsung, Apple)
+ANSWER(4)
 
-        QUESTION(Which company has partnered with Amazon to develop new smart home devices?)
-        CHOICES(Google, Microsoft, Samsung, Apple)
-        ANSWER(4)
+QUESTION(What is the capital of England?)
+CHOICES(Paris, London, Prague, Berlin)
+ANSWER(2)
 
-        QUESTION(Which company has good burgers?)
-        CHOICES(Macdonald, BurgerKing, KFC, JolieBee)
-        ANSWER(2)
-        
-        QUESTION(Which country has the nothern lights)
-        CHOICES(Netherland, Thailand, North Korea, Burma)
-        ANSWER(1)
+QUESTION(What is the most popular programming language)
+CHOICES(C++, Java, Python, Javascript)
+ANSWER(3)
 
-        //end
+//end
+}
 
 Transcript:
+{

@@ -28,13 +28,13 @@ def get_transcript():
             transcript_text += line['text'] + ' '
         
         words = transcript_text.split()
-        first_250_words = words[:250]
-        transcript_text = ' '.join(first_250_words)
+        first_x_words = words[:100]
+        transcript_text = ' '.join(first_x_words)
 
         # Prepare prompt for Ollama
         with open(prompt_file_path,'r') as file:
             prompt = file.read()
-        prompt += transcript_text
+        prompt += '\n' + transcript_text
         print(prompt)
 
         # Call Ollama to generate quizzes
