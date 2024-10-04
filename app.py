@@ -6,7 +6,7 @@ import json
 import os
 app = Flask(__name__)
 llm = Ollama(model='llama2')
-prompt_file_name = 'another_try.txt'
+prompt_file_name = 'yaml_prompt.txt'
 prompt_file_path = os.path.join('prompts',prompt_file_name)
 @app.route('/transcript', methods=['GET'])
 def get_transcript():
@@ -28,7 +28,7 @@ def get_transcript():
             transcript_text += line['text'] + ' '
         
         words = transcript_text.split()
-        first_x_words = words[:100]
+        first_x_words = words[:1000]
         transcript_text = ' '.join(first_x_words)
 
         # Prepare prompt for Ollama

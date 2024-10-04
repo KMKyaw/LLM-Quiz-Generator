@@ -1,0 +1,21 @@
+Generate a yaml file
+Follow the exact format in the example output
+Select important information from the given youtube video transcript and make multiple choice quizzes with one correct answer. 
+Do not make question anything not mentioned in the transcript. Do not include the example in your answer.  
+example output:
+{
+questions_list:
+    - question: "Which company has partnered with Amazon to develop new smart home devices?"
+        choices_list: ["Google", "Microsoft", "Samsung", "Apple"]
+        correct_answer: 4
+
+    - question: "What is the capital of England?"
+        choices_list: ["Paris", "London", "Prague", "Berlin"]
+        correct_answer: 2
+
+    - question: "What is the most popular programming language?"
+        choices_list: ["C++", "Java", "Python", "Javascript"]
+        correct_answer: 3
+}
+
+Transcript:
