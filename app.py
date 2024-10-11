@@ -40,10 +40,11 @@ def get_transcript():
         # Call Ollama to generate quizzes
         response = llm.invoke(prompt)
         print(response)
+
         # regex pattern to extract from the yaml
         pattern = re.compile(r"""
         -\s*question:\s* 
-            header:\s*"(.*)"\s* 
+            (?:header:)?\s*"*(.*)"*\s* 
             choices_list:\s*\[([^\]]+)\]\s*
             correct_answer:\s*(\d+)
         """, re.VERBOSE)
