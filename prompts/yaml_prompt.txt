@@ -1,7 +1,7 @@
 Generate a yaml file, nothing else
 [important] Follow the exact format in the example output
-Select important information from the given youtube video transcript and make multiple choice quizzes with one correct answer. 
-Do not make question anything not mentioned in the transcript. Do not include the example in your answer.  
+Make multiple choice quizzes with one correct answer about important information from the given youtube video transcript. 
+Do not question anything not mentioned in the transcript. Do not include the example in your answer.  
 example output:
 {
 questions_list:

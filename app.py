@@ -28,19 +28,24 @@ def get_transcript():
             transcript_text += line['text'] + ' '
         
         words = transcript_text.split()
-        first_x_words = words[:200]
+        first_x_words = words[:100]
         transcript_text = ' '.join(first_x_words)
 
         # Prepare prompt for Ollama
         with open(prompt_file_path,'r') as file:
             prompt = file.read()
-        prompt += '\n{' + transcript_text + '}'
+        prompt += '{\n' + transcript_text + '\n}'
         print(prompt)
 
         # Call Ollama to generate quizzes
-        response = llm.invoke(prompt)
-        print(response)
+        # response = llm.invoke(prompt)
 
+        # Call ollama to generate and print to console in real time
+        response = ''
+        for chunk in llm.stream(prompt):
+            print(chunk, end='', flush=True)
+            response = response + chunk  
+        
         # regex pattern to extract from the yaml
         pattern = re.compile(r"""
         -\s*question:\s* # Match the start of a question entry
