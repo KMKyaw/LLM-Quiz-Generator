@@ -43,10 +43,10 @@ def get_transcript():
 
         # regex pattern to extract from the yaml
         pattern = re.compile(r"""
-        -\s*question:\s* 
-            (?:header:)?\s*"*(.*)"*\s* 
-            choices_list:\s*\[([^\]]+)\]\s*
-            correct_answer:\s*(\d+)
+        -\s*question:\s* # Match the start of a question entry
+            (?:header:)?\s*['"]?([^"]+)['"]?\s* # Optionally match 'header:' and capture the question text
+            choices_list:\s*\[([^\]]+)\]\s* # Match 'choices_list:' and capture the list of choices
+            correct_answer:\s*(\d+) # Match 'correct_answer:' and capture the answer number
         """, re.VERBOSE)
 
         # Find all matches
@@ -58,7 +58,7 @@ def get_transcript():
         for match in matches:
             question = {
                 'question': match[0].strip(),
-                'options': [option.strip().strip("\"\'") for option in match[1].split(',')],
+                'options': [option.strip("\"\' ") for option in match[1].split(',')],
                 'answer': match[2].strip(),
             }
             questions_list.append(question)

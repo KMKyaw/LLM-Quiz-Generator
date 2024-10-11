@@ -6,34 +6,44 @@ handled_test_responses = [
     '''
     questions_list:
         - question: 
-            header: "Which company has partnered with Amazon to develop new smart home devices?"
-            choices_list: ["Google", "Microsoft", "Samsung", "Apple"]
+            header: "expected format"
+            choices_list: ["text", "text", "text", "text"]
             correct_answer: 4
 
         - question:
-            header: "What is the capital of England?"
-            choices_list: ["Paris", "London", "Prague", "Berlin"]
+            header: "expected format"
+            choices_list: ["text", "text", "text", "text"]
             correct_answer: 2
     '''
     ,
     '''
-    questions_list:
-        - question: "What is the largest planet in our solar system?" 
-            choices_list: ["Earth", "Mars", "Jupiter", "Saturn"]
+    handled_formats:
+        - question: 
+            header: missing quotes 
+            choices_list: ["text", "text", "text", "text"]
             correct_answer: 3
 
-        - question: "Who wrote 'To Kill a Mockingbird'?"
-            choices_list: ["Harper Lee", "Mark Twain", "Ernest Hemingway", "F. Scott Fitzgerald"]
+        - question: "missing header" 
+            choices_list: ["text", "text", "text", "text"]
+            correct_answer: 3
+
+        - question: missing header and quotes
+            choices_list: ["text", "text", "text", "text"]
             correct_answer: 1
+        
+        - question:
+            header: "missing quotes in list, done in post-processing, not in regex"
+            choices_list: [text, text, text, text]
+            correct_answer: 4
     '''
 ]
 
 # Refined regex pattern to extract from the yaml
 pattern = re.compile(r'''
-    -\s*question:\s* 
-    (?:header:)?\s*"?([^"]+)"?\s* 
-    choices_list:\s*\[([^\]]+)\]\s*
-    correct_answer:\s*(\d+)
+    -\s*question:\s*               # Match the start of a question entry
+    (?:header:)?\s*['"]?([^"]+)['"]?\s*  # Optionally match 'header:' and capture the question text
+    choices_list:\s*\[([^\]]+)\]\s* # Match 'choices_list:' and capture the list of choices
+    correct_answer:\s*(\d+)        # Match 'correct_answer:' and capture the answer number
 ''', re.VERBOSE)
 
 # Prepare list to store parsed questions lists
