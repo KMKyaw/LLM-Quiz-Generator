@@ -38,36 +38,18 @@ def get_transcript():
         print(prompt)
 
         # Call Ollama to generate quizzes
-        #response = llm.invoke(prompt)
-        test_response = '''
-questions_list:
-    - question: 
-        header: "Which company has partnered with Amazon to develop new smart home devices?"
-        choices_list: ["Google", "Microsoft", "Samsung", "Apple"]
-        correct_answer: 4
-
-    - question:
-        header: "What is the capital of England?"
-        choices_list: ["Paris", "London", "Prague", "Berlin"]
-        correct_answer: 2
-
-    - question: 
-        header: "What is the most popular programming language?"
-        choices_list: ["C++", "Java", "Python", "Javascript"]
-        correct_answer: 3
-'''
-        #print(response)
+        response = llm.invoke(prompt)
+        print(response)
         # regex pattern to extract from the yaml
         pattern = re.compile(r"""
-        #questions_list:\s*
-            -\s*question:\s* 
-                header:\s*"(.*)"\s* 
-                choices_list:\s*\[([^\]]+)\]\s*
-                correct_answer:\s*(\d+)
+        -\s*question:\s* 
+            header:\s*"(.*)"\s* 
+            choices_list:\s*\[([^\]]+)\]\s*
+            correct_answer:\s*(\d+)
         """, re.VERBOSE)
 
         # Find all matches
-        matches = pattern.findall(test_response)
+        matches = pattern.findall(response)
         # Prepare list to store parsed questions
         questions_list = []
 
