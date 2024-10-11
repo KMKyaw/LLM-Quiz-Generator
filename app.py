@@ -28,7 +28,7 @@ def get_transcript():
             transcript_text += line['text'] + ' '
         
         words = transcript_text.split()
-        first_x_words = words[:1000]
+        first_x_words = words[:200]
         transcript_text = ' '.join(first_x_words)
 
         # Prepare prompt for Ollama
@@ -38,16 +38,36 @@ def get_transcript():
         print(prompt)
 
         # Call Ollama to generate quizzes
-        response = llm.invoke(prompt)
-        print(response)
-        # Regular expression patterns to extract questions, choices, and answers
-        pattern_question = r"QUESTION\((.*?)\)"
-        pattern_choices = r"CHOICES\((.*?)\)"
-        pattern_answer = r"ANSWER\((.*?)\)"
+        #response = llm.invoke(prompt)
+        test_response = '''
+questions_list:
+    - question: 
+        header: "Which company has partnered with Amazon to develop new smart home devices?"
+        choices_list: ["Google", "Microsoft", "Samsung", "Apple"]
+        correct_answer: 4
+
+    - question:
+        header: "What is the capital of England?"
+        choices_list: ["Paris", "London", "Prague", "Berlin"]
+        correct_answer: 2
+
+    - question: 
+        header: "What is the most popular programming language?"
+        choices_list: ["C++", "Java", "Python", "Javascript"]
+        correct_answer: 3
+'''
+        #print(response)
+        # regex pattern to extract from the yaml
+        pattern = re.compile(r"""
+        #questions_list:\s*
+            -\s*question:\s* 
+                header:\s*"(.*)"\s* 
+                choices_list:\s*\[([^\]]+)\]\s*
+                correct_answer:\s*(\d+)
+        """, re.VERBOSE)
 
         # Find all matches
-        matches = re.findall(pattern_question + r"\n" + pattern_choices + r"\n" + pattern_answer, response, re.DOTALL)
-
+        matches = pattern.findall(test_response)
         # Prepare list to store parsed questions
         questions_list = []
 
@@ -55,7 +75,7 @@ def get_transcript():
         for match in matches:
             question = {
                 'question': match[0].strip(),
-                'options': [option.strip() for option in match[1].split(',')],
+                'options': [option.strip().strip("\"\'") for option in match[1].split(',')],
                 'answer': match[2].strip(),
             }
             questions_list.append(question)
