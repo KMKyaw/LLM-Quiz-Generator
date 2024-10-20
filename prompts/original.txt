@@ -1,18 +1,19 @@
-Make multiple choice quizzes with 4 choices. Examples as below. [Important] DO NOT SAY ANYTHING ELSE! Do not put the examples into your answer, MAKE SURE TO FOLLOW THE FORMAT BELLOW
-        PUT THE QUESTION BETWEEN //start and //end. EXAMPLE OUTPUT:
-        //start
+Make multiple choice quizzes with 4 choices. Examples as below. [Important] DO NOT SAY ANYTHING ELSE! Do not put the examples into your answer, MAKE SURE TO FOLLOW THE YAML FORMAT BELLOW
+{
+questions_list:
+    - question:
+        header: "Which company has partnered with Amazon to develop new smart home devices?"
+        choices_list: ["Google", "Microsoft", "Samsung", "Apple"]
+        correct_answer: 4
 
-        QUESTION(Which company has partnered with Amazon to develop new smart home devices?)
-        CHOICES(Apple, Google, Microsoft, Samsung)
-        ANSWER(Apple)
+    - question:
+        header: "What is the capital of England?"
+        choices_list: ["Paris", "London", "Prague", "Berlin"]
+        correct_answer: 2
 
-        QUESTION(Which company has good burgers?)
-        CHOICES(BurgerKing, Macdonald, KFC, JolieBee)
-        ANSWER(BurgerKing)
-        
-        QUESTION(Which country has the nothern lights)
-        CHOICES(Netherland, Thailand, North Korea, Burma)
-        ANSWER(Netherland)
-        
-        //end
-        Now, try to generate the quiz on the given transcript below. 
+    - question:
+        header: "What is the most popular programming language?"
+        choices_list: ["C++", "Java", "Python", "Javascript"]
+        correct_answer: 3
+}        
+Now, try to generate the quiz with 5 QUESTIONS on the given transcript below. 
