@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Quiz Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f4f6f9;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        label {
+            font-size: 1rem;
+            color: #666;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 15px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Quiz Generator</h1>
+        <form id="linkForm">
+            <label for="videoLink">YouTube Video Link:</label>
+            <input type="text" id="videoLink" placeholder="Enter YouTube link here" required>
+            <button type="submit">Generate Quiz</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('linkForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const videoLink = document.getElementById('videoLink').value;
+            const videoId = new URL(videoLink).searchParams.get("v");
+
+            if (videoId) {
+                window.location.href = `/quiz.html?video_id=${videoId}`;
+            } else {
+                alert("Invalid YouTube link.");
+            }
+        });
+    </script>
+</body>
+</html>

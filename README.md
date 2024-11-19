@@ -1,4 +1,4 @@
-# youtube_quiz_creator backend server side
-# Setup
-Youll need Ollama service with llama2 model running on your pc in order for this server to generate response. Install the requirements via pip. 
-There is not yet any frontend to generate the requests, so youll have to do that manually.
+### LLM Quiz Generator
+
+This is our group project for CSC340 AI course.
+As a prerequisite, you need to have Ollama with Llama3 and Llama3.2 installed in your machine.
